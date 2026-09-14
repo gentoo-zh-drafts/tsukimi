@@ -13,3 +13,7 @@ jobs:
         uses: projg2/crate-dist-mirror-action@v2
         with:
           ssh-private-key: ${{ secrets.ssh_key }}
+          # upstream became a cargo workspace in 26.8.3; pycargoebuild refuses
+          # the root and wants a member, whose Cargo.lock covers all of them
+          directories: crates/tsukimi
+          tag-filter: 'v[0-9]*'
